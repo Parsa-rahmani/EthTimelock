@@ -13,11 +13,7 @@ contract TimeLockedWallet {
         _;
     }
 
-    function TimeLockedWallet(
-        address _creator,
-        address _owner,
-        uint256 _unlockDate
-    ) public {
+    function TimeLockedWallet(address _creator, address _owner, uint256 _unlockDate) public {
         creator = _creator;
         owner = _owner;
         unlockDate = _unlockDate;

@@ -6,19 +6,11 @@ contract TimeLockedWalletFactory {
 
     mapping(address => address[]) wallets;
 
-    function getWallets(address _user)
-    public
-    view
-    returns(address[])
-    {
+    function getWallets(address _user) public view returns(address[]){
         return wallets[_user];
     }
 
-    function newTimeLockedWallet(address _owner, uint256 _unlockDate)
-    payable
-    public
-    returns(address wallet)
-    {
+    function newTimeLockedWallet(address _owner, uint256 _unlockDate) payable public returns(address wallet){
         // Create new wallet.
         wallet = new TimeLockedWallet(msg.sender, _owner, _unlockDate);
 
