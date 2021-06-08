@@ -25,6 +25,11 @@ contract TimelessFactory {
         emit Created(wallet, msg.sender, _owner, now, _unlockDate, msg.value);
     }
 
+    // Revert returns any extra funds sent to the contract.
+    function () public {
+        revert();
+    }
+
     // An event which occurs when a wallet is created.
     event Created(address wallet, address from, address to, uint256 createdAt, uint256 unlockDate, uint256 amount);
 }
