@@ -4,7 +4,9 @@ import "./ERC20.sol";
 
 contract TimeLockedWallet {
     address public creator;
+    //owner is whatever address the locked tokens has been delegated to. It could be the same as msg.sender or not
     address public owner;
+    //unlock date and created at are not modified in the contract, so the appropriate format needs to be outputed by the website itself
     uint256 public unlockDate;
     uint256 public createdAt;
 
@@ -12,7 +14,7 @@ contract TimeLockedWallet {
         require(msg.sender == owner);
         _;
     }
-
+    //constructor function, takes the inputs from the timeless factory contract, and feeds it into the defined variables
     function TimeLockedWallet(address _creator, address _owner, uint256 _unlockDate) public {
         creator = _creator;
         owner = _owner;
@@ -20,7 +22,7 @@ contract TimeLockedWallet {
         createdAt = now;
     }
 
-    // keep all the ether sent to this address
+    // this makes the function able to keep all the ether sent to this address
     function() payable public {
         Received(msg.sender, msg.value);
     }
